@@ -11,6 +11,12 @@ Platform undangan digital dengan template responsif, editor live preview, RSVP, 
 
 Seed mengisi katalog template dan aturan harga. Akun admin opsional dibuat hanya jika `ADMIN_EMAIL` serta `ADMIN_PASSWORD` (minimal 10 karakter) diatur sebelum seed; jangan gunakan kredensial contoh pada produksi.
 
+## Deploy ke Vercel
+
+- Atur `DATABASE_URL` di Environment Variables untuk API dan jalankan build tanpa migrasi database. `postinstall` menjalankan Prisma Client generation dari workspace API, sedangkan `build` hanya membangun web dan API.
+- Terapkan migrasi produksi secara terpisah dengan `npm run db:deploy` setelah `DATABASE_URL` tersedia. Perintah ini menggunakan `prisma migrate deploy`; jangan gunakan `db:migrate` (`migrate dev`) pada deployment.
+- Jika Vercel membuat proyek terpisah untuk web dan API, pastikan proyek API membangun workspace `@ucapin/api` dan tetap menjalankan `postinstall` root agar client Prisma dihasilkan dari `apps/api/prisma/schema.prisma`.
+
 ## Login, publikasi, dan pembayaran
 
 - Daftar/masuk melalui `/login`; undangan yang disimpan setelah masuk muncul di `/dashboard`.
