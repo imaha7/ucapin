@@ -1,4 +1,7 @@
-const API_BASE = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000/api").replace(/\/+$/, "");
+const API_BASE = (
+  process.env.NEXT_PUBLIC_API_URL ??
+  (process.env.NODE_ENV === "production" ? "/api" : "http://localhost:4000/api")
+).replace(/\/+$/, "");
 
 export type ApiUser = { id: string; email: string; name: string; role: "USER" | "ADMIN" };
 export type InvitationStatus = "DRAFT" | "UNPAID" | "PUBLISHED" | "ARCHIVED";
@@ -70,7 +73,7 @@ export async function apiRequest<T>(path: string, options: RequestOptions = {}):
     if (reason instanceof DOMException && reason.name === "TimeoutError") {
       throw new ApiError("Server terlalu lama merespons. Coba lagi.", 408);
     }
-    throw new ApiError("Tidak dapat terhubung ke server. Pastikan API berjalan di port 4000.", 0);
+    throw new ApiError("Tidak dapat terhubung ke server. Periksa koneksi atau konfigurasi API.", 0);
   }
 
   const body = await response.json().catch(() => null) as { message?: string | string[] } | null;
