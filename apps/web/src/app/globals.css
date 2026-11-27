@@ -1,0 +1,34 @@
+@import "tailwindcss";
+@plugin "./hero.mjs";
+@source "../../../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
+
+:root {
+  --paper: #fbf8f3;
+  --ink: #292521;
+  --muted: #817970;
+  --green: #355747;
+  --sage: #dce5dc;
+  --peach: #f0dfd4;
+  --line: #e9e3da;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+}
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+.serif { font-family: Georgia, "Times New Roman", serif; }
+.hero-grid {
+  background-image: radial-gradient(#d9d2c8 0.7px, transparent 0.7px);
+  background-size: 15px 15px;
+}
+.template-photo { transition: transform 650ms cubic-bezier(.2,.7,.2,1); }
+.template-card:hover .template-photo { transform: scale(1.055); }
+.soft-shadow { box-shadow: 0 22px 65px rgba(48, 41, 32, .12); }
+.editor-preview { background: linear-gradient(160deg, #f8e9df, #dce5dc 70%); }
+.phone-frame { box-shadow: 0 25px 60px rgba(39, 43, 36, .22); }

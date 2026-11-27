@@ -1,0 +1,21 @@
+{
+  "name": "ucapin",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/web",
+    "apps/api"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w @ucapin/web\" \"npm run start:dev -w @ucapin/api\"",
+    "dev:web": "npm run dev -w @ucapin/web",
+    "dev:api": "npm run start:dev -w @ucapin/api",
+    "build": "npm run build -w @ucapin/web && npm run build -w @ucapin/api",
+    "db:generate": "npm run prisma:generate -w @ucapin/api",
+    "db:migrate": "npm run prisma:migrate -w @ucapin/api",
+    "db:seed": "npm run prisma:seed -w @ucapin/api"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
