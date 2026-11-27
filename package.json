@@ -10,8 +10,8 @@
     "dev": "concurrently \"npm run dev -w @ucapin/web\" \"npm run start:dev -w @ucapin/api\"",
     "dev:web": "npm run dev -w @ucapin/web",
     "dev:api": "npm run start:dev -w @ucapin/api",
-    "postinstall": "prisma generate",
-    "build": "prisma generate && next build",
+    "postinstall": "npx prisma generate",
+    "build": "npx prisma generate && npx prisma db push && npm run build -w @ucapin/web && npm run build -w @ucapin/api",
     "db:generate": "npm run prisma:generate -w @ucapin/api",
     "db:migrate": "npm run prisma:migrate -w @ucapin/api",
     "db:seed": "npm run prisma:seed -w @ucapin/api"
